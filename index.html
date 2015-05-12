@@ -4,12 +4,15 @@
       document.addEventListener('DOMContentLoaded', function() {
         var input = document.getElementsByTagName('input')[0];
         var image = document.getElementsByTagName('img')[0];
-        input.addEventListener('keyup', function() {
+        var whenInputChanges = function() {
+          image.src = '';
           var value = input.value;
           if (value) {
             image.setAttribute('src', '/' + escape(value));
           }
-        });
+        };
+        input.addEventListener('keyup', whenInputChanges);
+        input.addEventListener('change', whenInputChanges);
         window.addEventListener('focus', function() {
           input.select();
         });
